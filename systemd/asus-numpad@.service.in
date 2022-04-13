@@ -1,0 +1,6 @@
+[Unit]
+Description=Virtual numpad driver for %I
+
+[Service]
+Type=simple
+ExecStart=@BIN@ %I

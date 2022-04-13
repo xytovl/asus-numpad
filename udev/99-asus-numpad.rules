@@ -1,0 +1,1 @@
+SUBSYSTEM=="input", KERNEL=="event*", ATTRS{name}=="ELAN*Touchpad", PROGRAM="/bin/systemd-escape -p --template=asus-numpad@.service $env{DEVNAME}", ENV{SYSTEMD_WANTS}+="%c", TAG+="systemd"
