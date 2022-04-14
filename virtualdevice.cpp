@@ -2,6 +2,8 @@
 
 #include "layout.h"
 
+#include <sstream>
+
 #include <libevdev/libevdev-uinput.h>
 #include <libevdev/libevdev.h>
 
@@ -29,8 +31,15 @@ void VirtualDevice::send(unsigned int type, unsigned int code, int value)
 {
     int err = libevdev_uinput_write_event(uidev, type, code, value);
     if (err != 0)
-        throw std::system_error{-err, std::generic_category(), "libevdev_uinput_write_event failed"};
+    {
+        std::stringstream str;
+        str << "libevdev_uinput_write_event(dev, 0x" << std::hex << type << ", " << code << ", " << value << ") failed";
+        throw std::system_error{-err, std::generic_category(), str.str()};
+    }
     err = libevdev_uinput_write_event(uidev, EV_SYN, SYN_REPORT, 0);
     if (err != 0)
-        throw std::system_error{-err, std::generic_category(), "libevdev_uinput_write_event failed"};
+    {
+        throw std::system_error{-err, std::generic_category(),
+                                "libevdev_uinput_write_event(dev, EV_SYN, SYN_REPORT, 0) failed"};
+    }
 }

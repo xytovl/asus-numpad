@@ -33,6 +33,13 @@ I2cDevice::I2cDevice(const std::string &event_device)
 }
 I2cDevice::~I2cDevice()
 {
+    try
+    {
+        set_brightness(0);
+    }
+    catch (...)
+    {
+    }
     close(fd);
 }
 

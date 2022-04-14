@@ -17,7 +17,7 @@ class Layout
     {
         int32_t col = x * num_cols;
         int32_t row = (y - top_offset) * num_rows;
-        if (col > num_cols or row < 0 or row > num_rows)
+        if (col >= num_cols or row < 0 or row >= num_rows)
             return 0;
         return keys[col + row * num_cols];
     }
