@@ -69,7 +69,7 @@ Layout parse_layout(const std::filesystem::path &path, std::string model)
     }
     if (not model_found)
         throw std::runtime_error{"No entry for " + model + " in " + path.string()};
-    if (keys.empty() || num_cols == 0 || padding.empty())
+    if (keys.empty() || num_cols == 0)
         throw std::runtime_error{"Invalid layout for " + model + " in " + path.string()};
     return Layout{keys, num_cols, padding};
 }
