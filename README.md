@@ -7,6 +7,7 @@ This projects lets you toggle between touchpad and numpad on Asus laptops.
 ### Dependencies
 * libevdev
 * meson
+* pkg-config
 * systemd (for automatic start)
 * kernel module i2c_dev
 
