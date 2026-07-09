@@ -135,7 +135,7 @@ class Numpad
 
 int main(int argc, char **argv)
 {
-    if (argc != 2)
+    if (argc != 2 && argc != 3)
     {
         std::cerr << "usage: " << argv[0] << " FILE [model]" << std::endl
                   << "where FILE is the event device such as /dev/input/event0" << std::endl
@@ -145,7 +145,7 @@ int main(int argc, char **argv)
     }
     try
     {
-        Layout l = parse_layout(DATABASE_LOCATION);
+        Layout l = parse_layout(DATABASE_LOCATION, argc == 3 ? argv[2] : "");
         Numpad numpad(argv[1], l);
         numpad.run();
     }
